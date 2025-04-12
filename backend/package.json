@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node start.js",
-    "dev": "node start.js",
-    "build": "npm install"
+    "start": "npx json-server --watch db.json --port 3001 --host 0.0.0.0",
+    "dev": "npx json-server --watch db.json --port 3001 --host 0.0.0.0"
   },
   "dependencies": {
     "json-server": "1.0.0-beta.3"
