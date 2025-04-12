@@ -3,11 +3,13 @@ services:
     name: innerconsulting-api
     env: node
     rootDir: backend
-    buildCommand: npm install -g json-server
-    startCommand: json-server --watch db.json --port $PORT
+    buildCommand: npm install && npm ci
+    startCommand: npm start
     envVars:
       - key: PORT
         value: 10000
+      - key: NODE_ENV
+        value: production
   
   - type: web
     name: innerconsulting-frontend
