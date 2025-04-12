@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# InnerKanban
 
-## Getting Started
+Aplicación de tablero Kanban implementada con Next.js para gestión y organización de tareas. Desarrollada como prueba técnica frontend siguiendo principios de arquitectura limpia.
 
-First, run the development server:
+## Stack Tecnológico
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Frontend**: Next.js 15.3.0, React 19, Tailwind CSS 4
+- **Backend**: JSON Server (API RESTful)
+- **Testing**: Jest, React Testing Library
+- **Drag and Drop**: dnd-kit
+- **Persistencia**: IndexedDB, JSON
+
+## Características Implementadas
+
+- Tablero Kanban con visualización de tareas por estados
+- Funcionalidad drag and drop para actualización de estados
+- Diseño responsive (móvil/escritorio)
+- Persistencia local con IndexedDB
+
+## Arquitectura del Proyecto
+
+El proyecto implementa los principios de arquitectura limpia basados en [Bulletproof React](https://github.com/alan2207/bulletproof-react), permitiendo escalabilidad y mantenibilidad del código.
+
+### Estructura de Carpetas
+
+```
+├── src/
+│   ├── app/                 # Implementación de App Router de Next.js
+│   │   ├── (home)/          # Rutas públicas de la aplicación
+│   │   ├── providers/       # Proveedores a nivel de aplicación
+│   │   └── globals.css      # Estilos globales
+│   ├── components/          # Componentes reutilizables
+│   │   ├── ui/              # Componentes de interfaz de usuario
+│   │   └── error/           # Componentes para manejo de errores
+│   ├── features/            # Módulos por funcionalidad
+│   │   ├── tasks/           # Funcionalidad de tareas
+│   │   ├── users/           # Funcionalidad de usuarios
+│   │   └── storage/         # Gestión de almacenamiento
+│   ├── hooks/               # Custom hooks
+│   ├── context/             # Contextos de React
+│   ├── utils/               # Funciones utilitarias
+│   ├── assets/              # Recursos estáticos
+│   └── __tests__/           # Tests de la aplicación
+├── backend/                 # Servidor mock con json-server
+│   ├── db.json              # Base de datos JSON
+│   └── src/                 # Código del servidor
+├── public/                  # Activos estáticos públicos
+└── types/                   # Definiciones de tipos TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Convención de Nomenclatura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+El proyecto utiliza kebab-case para archivos y carpetas por los siguientes motivos:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Legibilidad**: Mejora la distinción visual entre palabras en proyectos grandes
+- **Compatibilidad**: Evita problemas en sistemas operativos case-sensitive
+- **Consistencia URL**: Mantiene coherencia con las rutas de aplicación
+- **Uniformidad**: Garantiza consistencia entre diferentes entornos de desarrollo
 
-## Learn More
+## Configuración de Desarrollo
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Iniciar frontend
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Iniciar backend
+npm run backend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Iniciar ambos servicios
+npm run dev:all
+```
 
-## Deploy on Vercel
+Acceder a la aplicación en [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Ejecución de Pruebas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Ejecutar suite de pruebas
+npm test
+
+# Modo observador
+npm run test:watch
+
+# Análisis de cobertura
+npm run test:coverage
+```
+
+## Despliegue
+
+La aplicación está desplegada en:
+
+- **Frontend**: [https://innerconsulting.vercel.app/](https://innerconsulting.vercel.app/) (Vercel)
+- **Backend**: [https://innerconsulting.onrender.com/](https://innerconsulting.onrender.com/) (Render)
+
+### Endpoints API
+- `/users` - Obtención de usuarios
+- `/tasks` - Gestión de tareas
