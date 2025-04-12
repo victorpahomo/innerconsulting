@@ -1,0 +1,16 @@
+export { default as TasksIcon } from "./tasks-icon";
+export { default as UsersIcon } from "./users-icon";
+export { default as DocsIcon } from "./docs-icon";
+export { default as AuthorIcon } from "./author-icon";
+export { default as DeleteIcon } from "./delete-icon";
+export { default as EditIcon } from "./edit-icon";
+export { default as OptionsIcon } from "./options-icon";
+export { default as DetailIcon } from "./detail-icon";
+export { default as InProgressIcon } from "./in-progress-icon";
+export { default as DoneIcon } from "./done-icon";
+export { default as PendingIcon } from "./pending-icon";
+export { default as CloseIcon } from "./close-icon";
+export { default as AddUserIcon } from "./add-user-icon";
+export { default as AddIcon } from "./add-icon";
+export { default as SearchIcon } from "./search-icon";
+export { default as HamburgerIcon } from "./hamburger-icon";
