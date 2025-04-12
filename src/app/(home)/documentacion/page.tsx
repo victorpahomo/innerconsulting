@@ -8,19 +8,21 @@ export const metadata: Metadata = {
 
 export default function DocumentationPage() {
   return (
-    <div className="container mx-auto pb-8">
-      <h1 className="text-3xl text-flush-orange-500 font-bold mb-6 underline">
+    <div className="container mx-auto px-4 md:px-0 pb-8">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl text-flush-orange-500 font-bold mb-4 sm:mb-6 underline">
         InnerKanban
       </h1>
 
-      <p className="mb-6">
+      <p className="mb-4 sm:mb-6 text-sm sm:text-base">
         Aplicación de tablero Kanban implementada con Next.js para gestión y
         organización de tareas. Desarrollada como prueba técnica frontend
         siguiendo principios de arquitectura limpia.
       </p>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">Stack Tecnológico</h2>
-      <ul className="list-disc pl-6 mb-6">
+      <h2 className="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4">
+        Stack Tecnológico
+      </h2>
+      <ul className="list-disc pl-5 sm:pl-6 mb-4 sm:mb-6 text-sm sm:text-base">
         <li>
           <strong>Frontend</strong>: Next.js 15.3.0, React 19, Tailwind CSS 4
         </li>
@@ -38,20 +40,20 @@ export default function DocumentationPage() {
         </li>
       </ul>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">
+      <h2 className="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4">
         Características Implementadas
       </h2>
-      <ul className="list-disc pl-6 mb-6">
+      <ul className="list-disc pl-5 sm:pl-6 mb-4 sm:mb-6 text-sm sm:text-base">
         <li>Tablero Kanban con visualización de tareas por estados</li>
         <li>Funcionalidad drag and drop para actualización de estados</li>
         <li>Diseño responsive (móvil/escritorio)</li>
         <li>Persistencia local con IndexedDB</li>
       </ul>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">
+      <h2 className="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4">
         Arquitectura del Proyecto
       </h2>
-      <p className="mb-4">
+      <p className="mb-4 text-sm sm:text-base">
         El proyecto implementa los principios de arquitectura limpia basados en{" "}
         <a
           href="https://github.com/alan2207/bulletproof-react"
@@ -64,9 +66,11 @@ export default function DocumentationPage() {
         , permitiendo escalabilidad y mantenibilidad del código.
       </p>
 
-      <h3 className="text-xl font-bold mt-6 mb-3">Estructura de Carpetas</h3>
-      <div className="bg-gray-100 p-4 rounded mb-6 overflow-auto">
-        <pre className="text-sm">
+      <h3 className="text-lg sm:text-xl font-bold mt-5 sm:mt-6 mb-2 sm:mb-3">
+        Estructura de Carpetas
+      </h3>
+      <div className="bg-gray-100 p-3 sm:p-4 rounded mb-4 sm:mb-6 overflow-auto text-xs sm:text-sm">
+        <pre className="whitespace-pre-wrap sm:whitespace-pre">
           <code>
             {`├── src/
 │   ├── app/                 # Implementación de App Router de Next.js
@@ -94,14 +98,14 @@ export default function DocumentationPage() {
         </pre>
       </div>
 
-      <h3 className="text-xl font-bold mt-6 mb-3">
+      <h3 className="text-lg sm:text-xl font-bold mt-5 sm:mt-6 mb-2 sm:mb-3">
         Convención de Nomenclatura
       </h3>
-      <p className="mb-4">
+      <p className="mb-3 text-sm sm:text-base">
         El proyecto utiliza kebab-case para archivos y carpetas por los
         siguientes motivos:
       </p>
-      <ul className="list-disc pl-6 mb-6">
+      <ul className="list-disc pl-5 sm:pl-6 mb-4 sm:mb-6 text-sm sm:text-base">
         <li>
           <strong>Legibilidad</strong>: Mejora la distinción visual entre
           palabras en proyectos grandes
@@ -120,27 +124,24 @@ export default function DocumentationPage() {
         </li>
       </ul>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">
+      <h2 className="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4">
         Configuración de Desarrollo
       </h2>
-      <pre className="bg-gray-100 p-4 rounded mb-6">
-        <code>
-          # Iniciar frontend
-          <br />
-          npm run dev
-          <br />
-          <br />
-          # Iniciar backend
-          <br />
-          npm run backend
-          <br />
-          <br />
-          # Iniciar ambos servicios
-          <br />
-          npm run dev:all
-        </code>
-      </pre>
-      <p className="mb-6">
+      <div className="bg-gray-100 p-3 sm:p-4 rounded mb-4 sm:mb-6 overflow-auto text-xs sm:text-sm">
+        <pre className="whitespace-pre-wrap sm:whitespace-pre">
+          <code>
+            {`# Iniciar frontend
+npm run dev
+
+# Iniciar backend
+npm run backend
+
+# Iniciar ambos servicios
+npm run dev:all`}
+          </code>
+        </pre>
+      </div>
+      <p className="mb-4 sm:mb-6 text-sm sm:text-base">
         Acceder a la aplicación en{" "}
         <a
           href="http://localhost:3000"
@@ -150,33 +151,36 @@ export default function DocumentationPage() {
         </a>
       </p>
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">Ejecución de Pruebas</h2>
-      <pre className="bg-gray-100 p-4 rounded mb-6">
-        <code>
-          # Ejecutar suite de pruebas
-          <br />
-          npm test
-          <br />
-          <br />
-          # Modo observador
-          <br />
-          npm run test:watch
-          <br />
-          <br />
-          # Análisis de cobertura
-          <br />
-          npm run test:coverage
-        </code>
-      </pre>
+      <h2 className="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4">
+        Ejecución de Pruebas
+      </h2>
+      <div className="bg-gray-100 p-3 sm:p-4 rounded mb-4 sm:mb-6 overflow-auto text-xs sm:text-sm">
+        <pre className="whitespace-pre-wrap sm:whitespace-pre">
+          <code>
+            {`# Ejecutar suite de pruebas
+npm test
 
-      <h2 className="text-2xl font-bold mt-8 mb-4">Despliegue</h2>
-      <p className="mb-4">La aplicación está desplegada en:</p>
-      <ul className="list-disc pl-6 mb-6">
-        <li>
+# Modo observador
+npm run test:watch
+
+# Análisis de cobertura
+npm run test:coverage`}
+          </code>
+        </pre>
+      </div>
+
+      <h2 className="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4">
+        Despliegue
+      </h2>
+      <p className="mb-3 text-sm sm:text-base">
+        La aplicación está desplegada en:
+      </p>
+      <ul className="list-disc pl-5 sm:pl-6 mb-4 sm:mb-6 text-sm sm:text-base">
+        <li className="mb-2">
           <strong>Frontend</strong>:{" "}
           <a
             href="https://innerconsulting.vercel.app/"
-            className="text-blue-600 hover:underline"
+            className="text-blue-600 hover:underline break-words"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -188,7 +192,7 @@ export default function DocumentationPage() {
           <strong>Backend</strong>:{" "}
           <a
             href="https://innerconsulting.onrender.com/"
-            className="text-blue-600 hover:underline"
+            className="text-blue-600 hover:underline break-words"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -198,13 +202,17 @@ export default function DocumentationPage() {
         </li>
       </ul>
 
-      <h3 className="text-xl font-bold mt-6 mb-3">Endpoints API</h3>
-      <ul className="list-disc pl-6 mb-6">
+      <h3 className="text-lg sm:text-xl font-bold mt-5 sm:mt-6 mb-2 sm:mb-3">
+        Endpoints API
+      </h3>
+      <ul className="list-disc pl-5 sm:pl-6 mb-4 sm:mb-6 text-sm sm:text-base">
         <li>
-          <code>/users</code> - Obtención de usuarios
+          <code className="bg-gray-100 px-1 rounded text-sm">/users</code> -
+          Obtención de usuarios
         </li>
         <li>
-          <code>/tasks</code> - Gestión de tareas
+          <code className="bg-gray-100 px-1 rounded text-sm">/tasks</code> -
+          Gestión de tareas
         </li>
       </ul>
     </div>
