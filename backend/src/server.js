@@ -1,7 +1,7 @@
 const jsonServer = require("json-server");
 const path = require("path");
 
-// Render asigna automáticamente el puerto en la variable PORT
+// Render automatically assigns the port to the PORT variable
 const PORT = process.env.PORT || 10000;
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "../db.json"));

@@ -1,17 +1,15 @@
 const { spawn } = require("child_process");
 const path = require("path");
 
-// Determinar el puerto
+// Determine the port
 const PORT = process.env.PORT || 10000;
 
-// Ruta al archivo db.json
+// Path to the db.json file
 const dbPath = path.join(__dirname, "db.json");
 
-console.log(
-  `Iniciando JSON Server en el puerto ${PORT} con la base de datos ${dbPath}`
-);
+console.log(`Starting JSON Server on port ${PORT} with the database ${dbPath}`);
 
-// Usar NPX para ejecutar json-server directamente
+// Use NPX to run json-server directly
 const jsonServer = spawn(
   "npx",
   ["json-server", "--watch", dbPath, "--port", PORT, "--host", "0.0.0.0"],
@@ -20,24 +18,24 @@ const jsonServer = spawn(
   }
 );
 
-// Manejar los eventos del proceso
+// Handle the process events
 jsonServer.on("error", (error) => {
-  console.error("Error al iniciar JSON Server:", error);
+  console.error("Error starting JSON Server:", error);
   process.exit(1);
 });
 
 jsonServer.on("close", (code) => {
-  console.log(`JSON Server se cerró con código: ${code}`);
+  console.log(`JSON Server closed with code: ${code}`);
   process.exit(code);
 });
 
-// Manejar señales de terminación
+// Handle termination signals
 process.on("SIGTERM", () => {
-  console.log("Recibida señal SIGTERM, terminando...");
+  console.log("Received SIGTERM signal, terminating...");
   jsonServer.kill();
 });
 
 process.on("SIGINT", () => {
-  console.log("Recibida señal SIGINT, terminando...");
+  console.log("Received SIGINT signal, terminating...");
   jsonServer.kill();
 });

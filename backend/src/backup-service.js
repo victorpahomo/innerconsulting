@@ -1,24 +1,24 @@
 const fs = require("fs");
 const path = require("path");
 
-// Función para guardar el estado actual de la base de datos
+// Function to save the current state of the database
 const backupDatabase = () => {
-  // Leer el estado actual de la base de datos
+  // Read the current state of the database
   const dbData = fs.readFileSync(path.join(__dirname, "../db.json"), "utf8");
 
-  // Guardar en un archivo de backup
+  // Save the current state of the database to a backup file
   const backupPath = path.join(__dirname, "../db-backup.json");
   fs.writeFileSync(backupPath, dbData);
 
   console.log(`Database backed up at ${new Date().toISOString()}`);
 };
 
-// Función para restaurar la base de datos desde el backup
+// Function to restore the database from the backup
 const restoreDatabase = () => {
   try {
     const backupPath = path.join(__dirname, "../db-backup.json");
 
-    // Verificar si existe un backup
+    // Check if a backup exists
     if (fs.existsSync(backupPath)) {
       const backupData = fs.readFileSync(backupPath, "utf8");
       fs.writeFileSync(path.join(__dirname, "../db.json"), backupData);
@@ -33,15 +33,15 @@ const restoreDatabase = () => {
   }
 };
 
-// Programar backups periódicos (cada 5 minutos)
+// Schedule periodic backups (every 5 minutes)
 const startBackupService = () => {
-  // Restaurar desde backup al inicio
+  // Restore from backup at startup
   restoreDatabase();
 
-  // Programar backups cada 5 minutos
+  // Schedule backups every 5 minutes
   setInterval(backupDatabase, 5 * 60 * 1000);
 
-  // También hacer backup cuando se recibe una señal SIGTERM
+  // Also make a backup when a SIGTERM signal is received
   process.on("SIGTERM", () => {
     console.log(
       "Received SIGTERM signal. Backing up database before shutdown."

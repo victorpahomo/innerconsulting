@@ -1,26 +1,26 @@
-// Importa el módulo json-server
+// Import the json-server module
 const jsonServer = require("json-server");
 const path = require("path");
 
-// Crear el servidor
+// Create the server
 const server = jsonServer.create();
 
-// Configurar la base de datos
+// Configure the database
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 
-// Configurar middlewares por defecto (logger, static, cors y no-cache)
+// Configure default middlewares (logger, static, cors and no-cache)
 const middlewares = jsonServer.defaults();
 
-// Usar los middlewares
+// Use the middlewares
 server.use(middlewares);
 
-// Usar el router
+// Use the router
 server.use(router);
 
-// Determinar el puerto
+// Determine the port
 const PORT = process.env.PORT || 10000;
 
-// Iniciar el servidor
+// Start the server
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(`JSON Server está funcionando en http://0.0.0.0:${PORT}`);
+  console.log(`JSON Server is running on http://0.0.0.0:${PORT}`);
 });
