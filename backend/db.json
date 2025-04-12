@@ -1,0 +1,96 @@
+{
+  "users": [
+    {
+      "id": "2",
+      "name": "María López",
+      "email": "maria@example.com"
+    },
+    {
+      "id": "3",
+      "name": "Carlos Ramírez",
+      "email": "carlos@example.com"
+    },
+    {
+      "id": "26a0",
+      "name": "Camilo",
+      "email": "jatoy25933@kuandika.com",
+      "avatar": "https://gravatar.com/avatar/75bddb254c980a99382fc63a2421068b?s=400&d=robohash&r=x"
+    },
+    {
+      "id": "f11e",
+      "name": "Testing66",
+      "email": "test@test.com",
+      "avatar": "https://gravatar.com/avatar/75bddb254c980a99382fc63a2421068b?s=400&d=robohash&r=x"
+    },
+    {
+      "id": "b37d",
+      "name": "Test66",
+      "email": "test@test.com",
+      "avatar": "https://gravatar.com/avatar/75bddb254c980a94382fc63a2421068b?s=400&d=robohash&r=x"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "d5c6",
+      "title": "Test3",
+      "description": "Test3",
+      "status": "completed",
+      "assignedUsers": [
+        {
+          "id": "3",
+          "name": "Carlos Ramírez",
+          "email": "carlos@example.com"
+        }
+      ]
+    },
+    {
+      "title": "Test4",
+      "description": "Test4",
+      "status": "in-progress",
+      "assignedUsers": [
+        {
+          "id": "2",
+          "name": "María López",
+          "email": "maria@example.com"
+        },
+        {
+          "id": "3",
+          "name": "Carlos Ramírez",
+          "email": "carlos@example.com"
+        },
+        {
+          "id": "26a0",
+          "name": "Camilo",
+          "email": "jatoy25933@kuandika.com",
+          "avatar": "https://gravatar.com/avatar/75bddb254c980a99382fc63a2421068b?s=400&d=robohash&r=x"
+        }
+      ],
+      "id": "e6e2"
+    },
+    {
+      "id": "7dfb",
+      "title": "Hacer la lista de la compra por la mañana",
+      "description": "TEst",
+      "status": "pending",
+      "assignedUsers": []
+    },
+    {
+      "id": "e5f9",
+      "title": "Testin1",
+      "description": "df",
+      "status": "pending",
+      "assignedUsers": [
+        {
+          "id": "2",
+          "name": "María López",
+          "email": "maria@example.com"
+        },
+        {
+          "id": "3",
+          "name": "Carlos Ramírez",
+          "email": "carlos@example.com"
+        }
+      ]
+    }
+  ]
+}

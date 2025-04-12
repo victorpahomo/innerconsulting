@@ -1,0 +1,13 @@
+# Ignore backend folder
+/backend/**
+
+# Node modules
+/node_modules/
+
+# Build outputs
+/.next/
+/out/
+/build/
+
+# Coverage reports
+/coverage/ 
