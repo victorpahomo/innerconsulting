@@ -15,6 +15,7 @@ export function TaskCard({ task: initialTask }: TaskCardProps) {
     attributes,
     listeners,
     setNodeRef,
+    style,
     isDragging,
     task,
     assignedUsers,
@@ -40,6 +41,10 @@ export function TaskCard({ task: initialTask }: TaskCardProps) {
     <>
       <div
         ref={setNodeRef}
+        style={{
+          ...style,
+          touchAction: "none", // Prevent browser handling of touch gestures
+        }}
         {...attributes}
         {...listeners}
         onClick={handleCardClick}
