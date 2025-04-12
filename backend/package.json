@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "json-server --watch db.json --port 3001",
-    "dev": "json-server --watch db.json --port 3001",
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
     "build": "echo 'No build step required for backend'"
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
   }
 }
