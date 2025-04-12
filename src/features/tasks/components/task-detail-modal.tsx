@@ -38,16 +38,14 @@ export function TaskDetailModal(props: TaskDetailModalProps) {
         {/* Description */}
         <div>
           <h3 className="text-sm font-medium text-gray-700 mb-1">
-            Description
+            Descripción
           </h3>
           <p className="text-sm text-gray-600">{task.description}</p>
         </div>
 
         {/* Assigned users */}
         <div>
-          <h3 className="text-sm font-medium text-gray-700 mb-2">
-            Assigned to
-          </h3>
+          <h3 className="text-sm font-medium text-gray-700 mb-2">Asignado a</h3>
           <div className="space-y-2">
             {assignedUsers.length > 0 ? (
               assignedUsers.map((user) => (
