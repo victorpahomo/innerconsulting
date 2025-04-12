@@ -21,7 +21,14 @@ import {
 export function TaskForm() {
   const { users } = useUsers();
   const { formState, handlers } = useTaskForm();
-  const { title, description, assignedUsers, status, isModalOpen } = formState;
+  const {
+    title,
+    description,
+    assignedUsers,
+    status,
+    isModalOpen,
+    isSubmitting,
+  } = formState;
   const {
     setTitle,
     setDescription,
@@ -39,9 +46,9 @@ export function TaskForm() {
     { value: "completed", label: "Completada" },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    createTask();
+    await createTask();
   };
 
   return (
@@ -100,10 +107,17 @@ export function TaskForm() {
           </FormField>
 
           <FormActions>
-            <Button type="button" variant="secondary" onClick={closeModal}>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={closeModal}
+              disabled={isSubmitting}
+            >
               Cancelar
             </Button>
-            <Button type="submit">Guardar</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Guardando..." : "Guardar"}
+            </Button>
           </FormActions>
         </Form>
       </Modal>

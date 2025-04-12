@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 
 import { useUsers } from "@/context/users-context";
+import { useToast } from "@/context/toast-context";
 import { User } from "../types";
 
 interface UseUserFormProps {
@@ -17,9 +18,11 @@ interface UseUserFormProps {
  */
 export function useUserForm({ initialUser, onClose }: UseUserFormProps) {
   const { addUser, updateUser } = useUsers();
+  const { showToast } = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (initialUser) {
@@ -44,23 +47,33 @@ export function useUserForm({ initialUser, onClose }: UseUserFormProps) {
       return;
     }
 
-    if (initialUser) {
-      await updateUser({
-        ...initialUser,
-        name,
-        email,
-        avatar: avatar.trim() || undefined,
-      });
-    } else {
-      await addUser({
-        name,
-        email,
-        avatar: avatar.trim() || undefined,
-      });
-    }
+    try {
+      setIsSubmitting(true);
+      if (initialUser) {
+        await updateUser({
+          ...initialUser,
+          name,
+          email,
+          avatar: avatar.trim() || undefined,
+        });
+        showToast("Usuario actualizado con éxito", "success");
+      } else {
+        await addUser({
+          name,
+          email,
+          avatar: avatar.trim() || undefined,
+        });
+        showToast("Usuario añadido con éxito", "success");
+      }
 
-    resetForm();
-    onClose();
+      resetForm();
+      onClose();
+    } catch (error) {
+      console.error("Error al guardar usuario:", error);
+      showToast("Error al guardar el usuario", "error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return {
@@ -68,6 +81,7 @@ export function useUserForm({ initialUser, onClose }: UseUserFormProps) {
       name,
       email,
       avatar,
+      isSubmitting,
     },
     handlers: {
       setName,

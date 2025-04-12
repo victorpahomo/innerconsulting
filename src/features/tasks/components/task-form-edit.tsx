@@ -1,9 +1,10 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useTaskForm } from "../hooks/use-task-form";
 import { useUsers } from "@/context/users-context";
 import { useTasks } from "@/context/tasks-context";
+import { useToast } from "@/context/toast-context";
 import { Button } from "@/components/ui/button";
 import { User } from "@/features/users/types";
 import { Task, TaskStatus } from "../types";
@@ -31,6 +32,8 @@ export function TaskFormEdit({
 }: TaskFormEditProps) {
   const { users } = useUsers();
   const { updateTask } = useTasks();
+  const { showToast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { formState, handlers } = useTaskForm();
   const { title, description, assignedUsers, status } = formState;
   const { setTitle, setDescription, setAssignedUsers, setStatus } = handlers;
@@ -48,6 +51,7 @@ export function TaskFormEdit({
     if (!title.trim() || !description.trim()) return;
 
     try {
+      setIsSubmitting(true);
       await updateTask({
         ...task,
         title,
@@ -56,17 +60,21 @@ export function TaskFormEdit({
         assignedUsers,
       });
 
+      showToast("Tarea actualizada con éxito", "success");
       if (onComplete) onComplete();
     } catch (error) {
       console.error("Error updating task:", error);
+      showToast("Error al actualizar la tarea", "error");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   // List of status options for the select
   const statusOptions = [
-    { value: "pending", label: "Pending" },
-    { value: "in-progress", label: "In progress" },
-    { value: "completed", label: "Completed" },
+    { value: "pending", label: "Pendiente" },
+    { value: "in-progress", label: "En progreso" },
+    { value: "completed", label: "Completada" },
   ];
 
   return (
@@ -78,6 +86,7 @@ export function TaskFormEdit({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          disabled={isSubmitting}
         />
       </FormField>
 
@@ -89,6 +98,7 @@ export function TaskFormEdit({
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
           required
+          disabled={isSubmitting}
         />
       </FormField>
 
@@ -102,6 +112,7 @@ export function TaskFormEdit({
           getOptionLabel={(user) => user.name}
           getOptionValue={(user) => user.id.toString()}
           placeholder="Seleccionar usuarios..."
+          disabled={isSubmitting}
         />
       </FormField>
 
@@ -111,6 +122,7 @@ export function TaskFormEdit({
           id="status"
           value={status}
           onChange={(e) => setStatus(e.target.value as TaskStatus)}
+          disabled={isSubmitting}
         >
           {statusOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -121,10 +133,17 @@ export function TaskFormEdit({
       </FormField>
 
       <FormActions>
-        <Button type="button" variant="secondary" onClick={onCancel}>
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={onCancel}
+          disabled={isSubmitting}
+        >
           Cancelar
         </Button>
-        <Button type="submit">Guardar cambios</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Guardando..." : "Guardar cambios"}
+        </Button>
       </FormActions>
     </Form>
   );

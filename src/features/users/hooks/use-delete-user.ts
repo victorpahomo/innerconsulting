@@ -1,5 +1,6 @@
 "use client";
 import { useUsers } from "@/context/users-context";
+import { useToast } from "@/context/toast-context";
 
 /**
  * Custom hook for deleting a user
@@ -9,6 +10,7 @@ import { useUsers } from "@/context/users-context";
  */
 export function useDeleteUser() {
   const { deleteUser } = useUsers();
+  const { showToast } = useToast();
 
   /**
    * Executes the deletion of a user with callback handling
@@ -27,12 +29,14 @@ export function useDeleteUser() {
   ) => {
     try {
       await deleteUser(userId);
+      showToast("Usuario eliminado con éxito", "success");
 
       if (onSuccess) {
         onSuccess();
       }
     } catch (error) {
       console.error("Error al eliminar el usuario:", error);
+      showToast("Error al eliminar el usuario", "error");
 
       if (onError) {
         onError(
