@@ -45,7 +45,7 @@ export function TaskOptionsMenu({
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className="text-gray-500 hover:text-gray-700 focus:outline-none"
+        className="text-gray-500 hover:text-gray-700 focus:outline-none p-1 min-h-[30px] flex items-center justify-center"
         aria-label="Opciones de tarea"
       >
         <OptionsIcon />

@@ -41,7 +41,10 @@ export function TaskCard({ task: initialTask }: TaskCardProps) {
     <>
       <div
         ref={setNodeRef}
-        style={style}
+        style={{
+          ...style,
+          touchAction: "none", // Prevent browser handling of touch gestures
+        }}
         {...attributes}
         {...listeners}
         onClick={handleCardClick}
