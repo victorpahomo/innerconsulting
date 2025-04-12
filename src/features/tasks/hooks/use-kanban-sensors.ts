@@ -19,7 +19,7 @@ export function useKanbanSensors() {
     useSensor(PointerSensor, {
       // Default activationConstraint
       activationConstraint: {
-        delay: 100,
+        delay: 80,
         tolerance: 8,
       },
     }),
