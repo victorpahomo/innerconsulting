@@ -1,7 +1,7 @@
 import { User } from "@/features/users/types";
 import { Task, TaskStatus } from "../types";
 
-const API_URL = "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
 
 // Función para normalizar las tareas ignorando cualquier campo userId
 const normalizeTask = (task: Record<string, unknown>): Task => {
