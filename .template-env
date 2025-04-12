@@ -9,3 +9,8 @@ NEXT_PUBLIC_ENVIRONMENT=development
 # 🔗 API Configuration
 # ========================================
 NEXT_PUBLIC_API_BASE_URL=
+
+# ========================================
+# 🖼️ UI Configuration
+# ========================================
+NEXT_PUBLIC_AVATAR_SERVICE_URL=

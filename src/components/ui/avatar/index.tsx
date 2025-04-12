@@ -21,9 +21,16 @@ export function Avatar({
   };
 
   const getDefaultAvatarUrl = () => {
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(
-      name
-    )}&background=random`;
+    if (!process.env.NEXT_PUBLIC_AVATAR_SERVICE_URL) {
+      console.error(
+        "La variable de entorno NEXT_PUBLIC_AVATAR_SERVICE_URL no está definida"
+      );
+      return "";
+    }
+
+    return `${
+      process.env.NEXT_PUBLIC_AVATAR_SERVICE_URL
+    }/?name=${encodeURIComponent(name)}&background=random`;
   };
 
   return (
@@ -32,7 +39,12 @@ export function Avatar({
       alt={`Avatar de ${name}`}
       className={`${sizeClasses[size]} rounded-full object-cover ${className}`}
       onError={(e) => {
-        (e.target as HTMLImageElement).src = getDefaultAvatarUrl();
+        const defaultUrl = getDefaultAvatarUrl();
+        if (defaultUrl) {
+          (e.target as HTMLImageElement).src = defaultUrl;
+        } else {
+          (e.target as HTMLImageElement).style.display = "none";
+        }
       }}
       width={size === "sm" ? 32 : size === "md" ? 40 : 48}
       height={size === "sm" ? 32 : size === "md" ? 40 : 48}
