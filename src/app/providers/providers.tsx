@@ -1,5 +1,6 @@
 import { TaskActionsProvider } from "@/context/task-actions-context";
 import { ErrorBoundary } from "@/components/error/error-boundary";
+import { ToastProvider } from "@/context/toast-context";
 import { TasksProvider } from "@/context/tasks-context";
 import { UsersProvider } from "@/context/users-context";
 import { UIProvider } from "@/context/ui-context";
@@ -16,13 +17,15 @@ export default function AppProviders({
 }) {
   return (
     <ErrorBoundary>
-      <UIProvider>
-        <UsersProvider>
-          <TasksProvider>
-            <TaskActionsProvider>{children}</TaskActionsProvider>
-          </TasksProvider>
-        </UsersProvider>
-      </UIProvider>
+      <ToastProvider>
+        <UIProvider>
+          <UsersProvider>
+            <TasksProvider>
+              <TaskActionsProvider>{children}</TaskActionsProvider>
+            </TasksProvider>
+          </UsersProvider>
+        </UIProvider>
+      </ToastProvider>
     </ErrorBoundary>
   );
 }

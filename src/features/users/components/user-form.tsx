@@ -24,7 +24,7 @@ export function UserForm({ user, isOpen, onClose }: UserFormProps) {
     onClose,
   });
 
-  const { name, email, avatar } = formState;
+  const { name, email, avatar, isSubmitting } = formState;
   const { setName, setEmail, setAvatar, handleSubmit } = handlers;
 
   return (
@@ -88,10 +88,23 @@ export function UserForm({ user, isOpen, onClose }: UserFormProps) {
         </FormField>
 
         <FormActions>
-          <Button type="button" variant="secondary" onClick={onClose}>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={onClose}
+            disabled={isSubmitting}
+          >
             Cancelar
           </Button>
-          <Button type="submit">{user ? "Actualizar" : "Guardar"}</Button>
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting
+              ? user
+                ? "Actualizando..."
+                : "Guardando..."
+              : user
+              ? "Actualizar"
+              : "Guardar"}
+          </Button>
         </FormActions>
       </Form>
     </Modal>

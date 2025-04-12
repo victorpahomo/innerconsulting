@@ -114,6 +114,7 @@ interface FormMultiSelectProps<T> {
   placeholder?: string;
   className?: string;
   required?: boolean;
+  disabled?: boolean;
 }
 
 export function FormMultiSelect<T>({
@@ -126,6 +127,7 @@ export function FormMultiSelect<T>({
   placeholder = "Seleccionar...",
   className = "",
   required = false,
+  disabled = false,
 }: FormMultiSelectProps<T>) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -161,6 +163,7 @@ export function FormMultiSelect<T>({
 
   // Handle the selection/deselection of an option
   const handleSelect = (option: T) => {
+    if (disabled) return;
     const selectedValue = getOptionValue(option);
     const newValue = isSelected(option)
       ? value.filter((item) => getOptionValue(item) !== selectedValue)
@@ -182,10 +185,10 @@ export function FormMultiSelect<T>({
       onKeyDown={handleKeyDown}
     >
       <div
-        className={`flex flex-wrap gap-1 min-h-[42px] p-2 border border-gray-300 rounded-md cursor-pointer ${
-          isOpen ? "ring-1 ring-indigo-500 border-indigo-500" : ""
-        }`}
-        onClick={() => setIsOpen(!isOpen)}
+        className={`flex flex-wrap gap-1 min-h-[42px] p-2 border border-gray-300 rounded-md ${
+          disabled ? "bg-gray-100 cursor-not-allowed" : "cursor-pointer"
+        } ${isOpen ? "ring-1 ring-indigo-500 border-indigo-500" : ""}`}
+        onClick={() => !disabled && setIsOpen(!isOpen)}
       >
         {value.length > 0 ? (
           value.map((item) => (

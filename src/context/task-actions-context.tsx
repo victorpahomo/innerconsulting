@@ -3,6 +3,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 import { ConfirmationModal } from "@/components/ui/confirmation-modal";
 import { useTasks } from "./tasks-context";
+import { useToast } from "./toast-context";
 import { Task } from "@/features/tasks/types";
 import { Modal } from "@/components/ui/modal";
 import { TaskFormEdit } from "@/features/tasks/components/task-form-edit";
@@ -19,14 +20,15 @@ const TaskActionsContext = createContext<TaskActionsContextType | undefined>(
   undefined
 );
 
-export function useTaskActions() {
+export const useTaskActions = () => {
   const context = useContext(TaskActionsContext);
-  if (!context)
+  if (context === undefined) {
     throw new Error(
       "useTaskActions debe usarse dentro de un TaskActionsProvider"
     );
+  }
   return context;
-}
+};
 
 // Rename this function to maintain compatibility with existing code
 export function useDeleteTask() {
@@ -42,6 +44,7 @@ export function useDeleteTask() {
 
 export function TaskActionsProvider({ children }: { children: ReactNode }) {
   const { deleteTask, tasks } = useTasks();
+  const { showToast } = useToast();
 
   // State for the delete modal
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -78,8 +81,10 @@ export function TaskActionsProvider({ children }: { children: ReactNode }) {
     setIsDeleting(true);
     try {
       await deleteTask(taskToDelete);
+      showToast("Tarea eliminada con éxito", "success");
     } catch (error) {
       console.error("Error al eliminar tarea:", error);
+      showToast("Error al eliminar la tarea", "error");
     } finally {
       setIsDeleting(false);
       closeDeleteModal();
