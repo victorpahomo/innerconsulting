@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npx json-server --watch db.json --port 3001 --host 0.0.0.0 --no-static",
-    "dev": "npx json-server --watch db.json --port 3001 --host 0.0.0.0 --no-static"
+    "start": "json-server db.json --port 3001 --host 0.0.0.0",
+    "dev": "json-server db.json --port 3001 --host 0.0.0.0"
   },
   "dependencies": {
     "json-server": "1.0.0-beta.3"

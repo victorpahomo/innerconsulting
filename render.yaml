@@ -4,10 +4,10 @@ services:
     env: node
     rootDir: backend
     buildCommand: npm install
-    startCommand: npx json-server --watch db.json --port $PORT --host 0.0.0.0 --no-static
+    startCommand: npm start
     envVars:
       - key: PORT
-        value: 10000
+        value: 3001
       - key: NODE_ENV
         value: production
   
